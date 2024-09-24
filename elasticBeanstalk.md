@@ -9,6 +9,7 @@
 ## Beanstalk vs Lambda:
 
 | Beanstalk | Lambda |
+| --------- | ------ |
 | Platform as Service (PaaS) | Servrless Computing |
 | Deploys and manages long-running applications on servers | Runs short-lived functions in response to events (event-driven) |
 | Uses EC2 instances | Functions run on demand, automatically scaling as needed |
