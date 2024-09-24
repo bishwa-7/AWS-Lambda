@@ -31,13 +31,21 @@ INIT -> INVOKE -> INVOKE -> SHUTDOWN
 
 
 ## Invocation type:
-    - https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html
-    - Trigger based invocation:
-        - some services(s3) can invoke a lambda function with each new event 
-    - Event source mapping: 
-        - for stream and queue-based services and invoke in batches of records
+- https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html
+- Trigger based invocation:
+    - some services(s3) can invoke a lambda function with each new event 
+    - we have no control over the invocation type
+- Event source mapping: 
+    - for stream and queue-based services and invoke in batches of records
+    - using Invoke API
+- In Invoke API, Invocation type:
+    - RequestResponse - synchronously
+    - Event - acynchronously
+    - DryRun 
 
 ### Synchronous invocation
-    - you wait for the function to process the event and return the response
+- you wait for the function to process the event and return the response
+- the connection is open until the function returns a response or time out
+
 ### Asynchronous invocation
-    - Lambda queues the event for processing and returns a response immediately
+- Lambda queues the event for processing and returns a response immediately
