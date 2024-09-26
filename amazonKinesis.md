@@ -59,5 +59,33 @@ iii. Consumers
 
 ### Shard:
 - uniquely identified **sequence of data** records in a stream
-- A stream is composed of one or more shards, each of which provides a fixed unit of capacity.
+- A stream is composed of one or more shards, each of which provides a **fixed unit of capacity**.
+- Each shard can support up to 5 transactions per seconds for reads, & 1000 records/sec for writes
+- If data rate increases or decreases, you can increase or decrease number of shards called reshard
+- **To achieve optimum performance, you should have one KCL worker assigned to each shard**
+    - each EC2 instance runs one KCL
+
+## Kinesis Resharding:
+- https://docs.aws.amazon.com/streams/latest/dev/kinesis-record-processor-scaling.html
+- enables you to increase or decrease the number of shards in a stream in order to adapt to change in the rate of data flowing through the stream
+- Resharding is always pairwise
+- The Kinesis Client Library (KCL) tracks the shards in the stream using an Amazon DynamoDB table, and adapts to changes in the number of shards that result from resharding
+- The workers automatically discover the new shards and create processors to handle the data from them.
+- **When you use the KCL, you should ensure that the number of instances does not exceed the number of shards (except for failure standby purposes).** 
+    - Each shard is processed by exactly one KCL worker and has exactly one corresponding record processor. However, one worker can process any number of shards, so it's fine if the number of shards exceeds the number of instances.
+
+## Kinesis Client Library (KCL):
+- https://docs.aws.amazon.com/streams/latest/dev/shared-throughput-kcl-consumers.html
+- KCL helps you consume and process data from a Kinesis data stream by taking care of many of the complex tasks associated with distributed computing
+
+### KCL concepts:
+- **KCL consumer application**: an application that is custom-built using KCL and designed to read and process records from data streams.
+- **Consumer application instance**: KCL consumer applications are typically distributed, with one or more application instances running simultaneously in order to coordinate on failures and dynamically load balance data record processing.
+- **Worker**: a high level class that a KCL consumer application instance uses to start processing data.
+- The worker initializes and oversees various tasks, including syncing shard and lease information, tracking shard assignments, and processing data from the shards
+
+**Lease**:
+- By default, a worker can hold one or more leases at the same time
+- One worker holds the lease to a particular shard until it is ready to stop processing this shard’s data records or until it fails.
+- 2 workers can not hold the same shard at the same time
 - 
