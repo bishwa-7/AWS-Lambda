@@ -20,6 +20,7 @@
 - Security groups can meet the needs but Network ACLs can be used for additional layer of security.
 
 | Security Groups | Network ACLs |
+| --------- | ------ |
 | Operates at instance level | Operates at subnet level |
 | Applies to an instance only if it is associated with the instance | Applies to all instances deployed in the associated subnet |
 | Supports allow rules only | Supports allow and deny rules |
