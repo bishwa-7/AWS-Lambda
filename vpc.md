@@ -26,3 +26,7 @@
 | Supports allow rules only | Supports allow and deny rules |
 | Evaluates all rules before deciding whether to allow traffic | Evaluates rules in order, starting with the lowest numbered rule |
 | Stateful: return traffic is allowed, regardless of the rules | Stateless: Return traffic must be explicitly allowed by the rules |
+
+
+
+Test
