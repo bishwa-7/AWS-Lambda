@@ -1,8 +1,11 @@
 # Amazon Kinesis Data Streams:
 
 - https://docs.aws.amazon.com/streams/latest/dev/introduction.html
+- it is messaging service for collecting and transferring data between different application similar to SQS and SNS
 - to collect and process large streams of data records in real time
 - You can use Kinesis Data Streams for rapid and continuous data intake and aggregation
+- Kinesis is able to handle large stream of incoming data and also be able to connect to other services to do real time reporting on these large data streams
+- SQS is used for simpler usecase hence its name Simple
 - The type of data used can include IT infrastructure log data, application logs, social media, market data feeds, and web clickstream data
 
 ## Usecase:
@@ -68,11 +71,20 @@ iii. Consumers
 ## Kinesis Resharding:
 - https://docs.aws.amazon.com/streams/latest/dev/kinesis-record-processor-scaling.html
 - enables you to increase or decrease the number of shards in a stream in order to adapt to change in the rate of data flowing through the stream
-- Resharding is always pairwise
+- Resharding is always pairwise meaning you can not split into more than two shards in a single operations
+- 2 types of resharding:
+    - Shard Split:
+        - combine two shards into a single shard
+        - splitting increases the number of shards in the stream and therefore increases the data capacity of the stream
+        - it also increases the cost
+    - Shard Merge:
+        - combine two shards into a single shard
+        - reduces the number of shards in the stream and thus ruduces the data capacity and cost
 - The Kinesis Client Library (KCL) tracks the shards in the stream using an Amazon DynamoDB table, and adapts to changes in the number of shards that result from resharding
 - The workers automatically discover the new shards and create processors to handle the data from them.
 - **When you use the KCL, you should ensure that the number of instances does not exceed the number of shards (except for failure standby purposes).** 
     - Each shard is processed by exactly one KCL worker and has exactly one corresponding record processor. However, one worker can process any number of shards, so it's fine if the number of shards exceeds the number of instances.
+    - Because each shard can not be processed by multiple workers at a same time, there is no point to use EC2 instance > number of shards.
 
 ## Kinesis Client Library (KCL):
 - https://docs.aws.amazon.com/streams/latest/dev/shared-throughput-kcl-consumers.html

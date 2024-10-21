@@ -28,5 +28,3 @@
 | Stateful: return traffic is allowed, regardless of the rules | Stateless: Return traffic must be explicitly allowed by the rules |
 
 
-
-Test

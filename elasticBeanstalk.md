@@ -1,6 +1,7 @@
 # AWS Elastic Beanstalk:
 - https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html
-- it can be challenging to figure out which services to use and how to provision them in AWS which provides variety of services
+- Beanstalk is great if you have a single code base for the project
+- it can b~e challenging to figure out which services to use and how to provision them in AWS which provides variety of services
 - You simply upload your application, and Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.
 - Allows you to quickly deploy and manage applications in the AWS Cloud without worrying about the infrastructure that runs those applications.
 - You can interact with Elastic Beanstalk by using the Elastic Beanstalk console, the AWS Command Line Interface (AWS CLI), or eb

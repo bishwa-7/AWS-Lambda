@@ -7,6 +7,7 @@
 
 - Amazon recommends using RDS as default choice for most relational database deployment.
 - RDS is responsible for hosting the software components and infrastructure and you are responsible for query tuning
+- Multi-AZ deployment - only use when you need to run production database that needs high uptime
 
 ### Disadvantage of alternatives:
 - On-premise deployment:
@@ -15,8 +16,9 @@
     - Unlike on-premise server, CPU, memory, storage and IOPS are separated in EC2 and can be scaled independently
     - EC2 is that you're more prone to user errors
         - When updating OS or database software manually, you might accidently cause application downtime
-
-- **DB instance** are the basic building block of RDS
+- RDS manages EC2 instances, the database backups, databse engine upgrades even failover replication
+- RDS supports most SQL database
+- **DB instance** are the basic building block of RDS similar to EC2 instance
 
 ### DB instance classes:
 - DB instance class determines the computation and memory capacity of a DB instance
@@ -36,6 +38,8 @@
     - We recommend that you use General Purpose SSD or Provisioned IOPS SSD for any new storage needs.
 
 ## Amazon Aurora:
+- RDS is great but still we have to do some task manually like keeping some monitors on read and write throughput
+- It handles more
 - It is enterprise-class relational database
 - It is compatible with MySQL and PostgreSQL relational databases
 - up to five times faster than standard MySQL databases and up to three times faster than standard PostgreSQL datab
